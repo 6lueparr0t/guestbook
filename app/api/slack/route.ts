@@ -6,7 +6,7 @@ import timezone from "dayjs/plugin/timezone";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{4,}$/;
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]{4,}\.[a-zA-Z]{2,}$/;
 
 export async function POST(request: Request) {
   const slackWebhookUrl = process.env.SLACK_WEBHOOK_URL;

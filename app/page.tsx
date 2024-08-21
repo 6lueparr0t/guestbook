@@ -12,7 +12,7 @@ function Page() {
     if (!isCancelled && count === 0) {
       router.push("https://6lueparr0t.github.io");
     }
-  }, [isCancelled, count]);
+  }, [isCancelled, count, router]);
 
   useEffect(() => {
     const timer = setInterval(() => {

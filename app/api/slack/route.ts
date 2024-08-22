@@ -27,10 +27,12 @@ export async function POST(request: Request) {
 
     // Slack으로 보낼 메시지 데이터
     const slackMessage = {
-      text: `{
+      text: `
+// ${mail}
+{
   "name": "${name}",
   "message": "${message}",
-  "mail": "${mail}",
+  "mail": "x",
   "date": "${dayjs().tz("Asia/Seoul").format("YYYY-MM-DDTHH:mm:ssZ")}",
   "answer": ""
 }`,

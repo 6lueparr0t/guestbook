@@ -28,7 +28,7 @@ export async function POST(request: Request) {
     // Slack으로 보낼 메시지 데이터
     const slackMessage = {
       text: `
-// ${mail}
+// ${name}(${mail}) 님으로 부터 메시지가 도착했습니다.
 {
   "name": "${name}",
   "message": "${message}",

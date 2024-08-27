@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-function sendEvent(writer: WritableStreamDefaultWriter, encoder: TextEncoder, data: any) {
-  writer.write(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
-}
-
 export async function GET(request: NextRequest) {
+  function sendEvent(writer: WritableStreamDefaultWriter, encoder: TextEncoder, data: any) {
+    writer.write(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
+  }
+
   try {
     const { readable, writable } = new TransformStream();
     const writer = writable.getWriter();

@@ -1,14 +1,22 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
-  function sendEvent(writer: WritableStreamDefaultWriter, encoder: TextEncoder, data: any) {
-    writer.write(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
-  }
+function sendEvent(writer: WritableStreamDefaultWriter, encoder: TextEncoder, data: any) {
+  writer.write(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
+}
 
+export async function GET(request: NextRequest) {
   try {
+    // Query string을 파싱
+    const { searchParams } = new URL(request.url);
+
+    // 특정 query parameter 가져오기 (예: 'name')
+    const enable = searchParams.get('enable');
+    if(!enable || Boolean(enable) !== true) {
+      throw new Error("Disabled");
+    }
+
     const { readable, writable } = new TransformStream();
     const writer = writable.getWriter();
-
     const encoder = new TextEncoder();
 
     // 서버에서 일정 주기로 데이터 전송
@@ -17,7 +25,7 @@ export async function GET(request: NextRequest) {
         message: "Server Sent Event Test",
         time: new Date().toISOString(),
       });
-    }, 5000);
+    }, 3000);
 
     // 클라이언트가 연결을 끊었을 때 인터벌 정리
     request.signal.addEventListener("abort", () => {
@@ -34,6 +42,6 @@ export async function GET(request: NextRequest) {
 
     return new NextResponse(readable, { headers });
   } catch (error) {
-    return NextResponse.json({ error: "Invalid request" }, { status: 400 });
+    return NextResponse.json({ error: error || "Invalid request" }, { status: 400 });
   }
 }

@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
@@ -8,7 +8,7 @@ dayjs.extend(timezone);
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]{4,}\.[a-zA-Z]{2,}$/;
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const slackWebhookUrl = process.env.SLACK_WEBHOOK_URL;
 
   try {

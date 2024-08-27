@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export function sendEvent(writer: WritableStreamDefaultWriter, encoder: TextEncoder, data: any) {
+function sendEvent(writer: WritableStreamDefaultWriter, encoder: TextEncoder, data: any) {
   writer.write(encoder.encode(`data: ${JSON.stringify(data)}\n\n`));
 }
 

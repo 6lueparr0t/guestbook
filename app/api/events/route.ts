@@ -7,7 +7,7 @@ function sendEvent(writer: WritableStreamDefaultWriter, encoder: TextEncoder, da
 export async function GET(request: NextRequest) {
   try {
     // Query string을 파싱
-    const { searchParams } = new URL(request.url);
+    const searchParams = request.nextUrl.searchParams;
 
     // 특정 query parameter 가져오기 (예: 'name')
     const enable = searchParams.get('enable');

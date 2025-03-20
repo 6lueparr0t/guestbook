@@ -1,6 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+
 import { useRouter } from "next/navigation";
+
+import { useEffect, useState } from "react";
+
 import { Button } from "@/components/ui/button";
 
 function Page() {
@@ -9,7 +12,7 @@ function Page() {
   const [count, setCount] = useState(5);
 
   useEffect(() => {
-    if (!isCancelled && count === 0) {
+    if (!isCancelled && count <= 0) {
       router.push("https://6lueparr0t.github.io");
     }
   }, [isCancelled, count, router]);
@@ -19,7 +22,7 @@ function Page() {
       setCount((prev) => prev - 1);
     }, 1000);
 
-    if(isCancelled) clearInterval(timer);
+    if (isCancelled) clearInterval(timer);
 
     return () => clearInterval(timer);
   }, [isCancelled]);
@@ -43,7 +46,7 @@ function Page() {
         <div className={"text-2xl"}>
           취소되었습니다.
           <br />
-          <Button className="my-4" onClick={()=>router.push("https://6lueparr0t.github.io")}>
+          <Button className="my-4" onClick={() => router.push("https://6lueparr0t.github.io")}>
             이동
           </Button>
         </div>

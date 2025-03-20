@@ -1,4 +1,4 @@
-import classes from './Layout.module.scss';
+import classes from './Layout.module.css';
 
 function Layout(props) {
   return (

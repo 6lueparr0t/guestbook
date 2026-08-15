@@ -64,3 +64,4 @@ lerna-debug.log*
 next-env.d.ts
 
 certificates
+.omc
